@@ -88,3 +88,58 @@ d=$(($hwin/$temp))
 TTpercentage=$(( $d * 100 ))
 arr=( $HHpercentage $HTpercentage $THpercentage $TTpercentge )
 }
+
+function coinTriplet() 
+{
+temp=$1
+HHHwin=0
+HHTwin=0
+HTHwin=0
+THHwin=0
+HTTwin=0
+TTHwin=0
+TTTwin=0
+for (( i=0 ; $i < $temp ; i++ ))
+do
+rand=$(($RANDOM%2))
+rand1=$(($RANDOM%2))
+rand2=$(($RANDOM%2))
+rand3=$(($RANDOM%2))
+
+if [ $rand -eq 1 -a $rand1 -eq 1 -a $rand2 -eq 1]
+then
+        echo "HHH wins"
+        HHHwin=$(( $HHHwin + 1))
+elif [ $rand -eq 1 -a $rand1 -eq 1 -a $rand2 -eq 0 ]
+then
+        echo "HHT wins"
+        HHTwin=$(( $HHTwin + 1))
+elif [ $rand -eq 1 -a $rand1 -eq 0 -a $rand2 -eq 1 ]
+then
+        echo "HTH wins"
+        HTHwin=$(( $HTHwin + 1))
+elif [ $rand -eq 0 -a $rand1 -eq 1 -a $rand2 -eq 1 ]
+then
+        echo "THH wins"
+        THHwin=$(( $THHwin + 1))
+elif [ $rand -eq 1 -a $rand1 -eq 0 -a $rand2 -eq 0 ]
+then
+        echo "HTT wins"
+        HTTwin=$(( $HTTwin + 1))
+elif [ $rand -eq 0 -a $rand1 -eq 1 -a $rand2 -eq 0 ]
+then
+        echo "THT wins"
+        THTwin=$(( $THHwin + 1))
+elif [ $rand -eq 0 -a $rand1 -eq 0 -a $rand2 -eq 1 ]
+then
+        echo "TTH wins"
+        TTHwin=$(( $TTHwin + 1))
+elif [ $rand -eq 1 -a $rand1 -eq 1 -a $rand2 -eq 1 ]
+then
+        echo "TTT wins"
+        TTTwin=$(( $TTTwin + 1))
+else
+        break
+fi
+done
+echo $HHHwin
